@@ -21,11 +21,6 @@ import java.util.List;
  * - LoanApplication (루트)
  * - Document (내부 엔티티)
  * - LoanRequest, ApplicantInfo, ConsentInfo (값 객체)
- *
- * 역할:
- * - 고객의 대출 신청 정보를 관리하는 Aggregate의 루트 엔티티
- * - 신청서 작성, 제출, 취소 등의 생명주기를 관리
- * - 신청 상태 전이와 비즈니스 규칙을 보장
  */
 @Entity
 @Table(name = "loan_application")

@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
  * 서류 엔티티 (Aggregate 내부 엔티티)
  *
  * 설계 이유:
- * - 서류는 식별자가 있음 (업로드 시각, 파일명)
- * - 같은 유형의 서류도 여러 번 업로드 가능 (교체)
+ * - 대출 신청 서류는 대출이 심사에서 통과하지 못하더라도 신청 기록은 남아있기 때문에 신청 제출한 서류도 같이 보관
+ * - 같은 유형의 서류도 심사가 통과하지 못할 경우에 여러 번 업로드 가능
  * - Aggregate Root를 통해서만 접근 가능
  */
 @Entity
@@ -30,15 +30,6 @@ public class Document {
     @Column(name = "document_type", nullable = false, length = 30)
     private DocumentType type;
 
-    @Column(name = "file_name", nullable = false, length = 255)
-    private String fileName;
-
-    @Column(name = "file_path", nullable = false, length = 500)
-    private String filePath;
-
-    @Column(name = "file_size", nullable = false)
-    private long fileSize;
-
     @Column(name = "uploaded_at", nullable = false, updatable = false)
     private LocalDateTime uploadedAt;
 
@@ -46,32 +37,17 @@ public class Document {
      * 생성자를 통한 불변성 보장
      */
     public Document(
-            DocumentType type,
-            String fileName,
-            String filePath,
-            long fileSize) {
+            DocumentType type) {
 
-        validateDocument(type, fileName, filePath, fileSize);
+        validateDocument(type);
 
         this.type = type;
-        this.fileName = fileName;
-        this.filePath = filePath;
-        this.fileSize = fileSize;
         this.uploadedAt = LocalDateTime.now();
     }
 
-    private void validateDocument(DocumentType type, String fileName, String filePath, long fileSize) {
+    private void validateDocument(DocumentType type) {
         if (type == null) {
             throw new IllegalArgumentException("서류 유형은 필수입니다");
-        }
-        if (fileName == null || fileName.trim().isEmpty()) {
-            throw new IllegalArgumentException("파일명은 필수입니다");
-        }
-        if (filePath == null || filePath.trim().isEmpty()) {
-            throw new IllegalArgumentException("파일 경로는 필수입니다");
-        }
-        if (fileSize <= 0) {
-            throw new IllegalArgumentException("파일 크기는 0보다 커야 합니다");
         }
     }
 

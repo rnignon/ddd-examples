@@ -14,7 +14,6 @@ public class LoanApplicationDomainService {
     /**
      * 대출 신청서 완전성 검증
      *
-     * 비즈니스 규칙:
      * - 연소득 2,000만원 이상
      * - 모든 필수 정보 입력 완료
      * - 신청 금액이 연소득의 일정 배수 이내
@@ -48,8 +47,7 @@ public class LoanApplicationDomainService {
     /**
      * 대출 신청 가능 여부 판단
      *
-     * 비즈니스 규칙:
-     * - 고객의 진행 중인 신청이 없어야 함
+     * - 고객의 진행 중인 신청이 없어야 한다
      * - 최근 거절된 신청이 있으면 일정 기간 대기 필요
      */
     public boolean canApplyNewLoan(
