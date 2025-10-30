@@ -76,38 +76,6 @@ src/main/java/com/example/ddd/loan/
 └── application/         # 대출 신청 Context (구조만 정의)
 ```
 
-**핵심 도메인 모델:**
-
-#### 🔷 PreReview (Aggregate Root)
-```java
-@Entity
-public class PreReview extends AbstractAggregateRoot<PreReview> {
-    private String applicationId;    // 신청번호
-    private String customerId;       // 고객ID
-    private CreditInfo creditInfo;   // 신용정보 (VO)
-    private boolean isPassed;        // 통과 여부
-    private PreReviewStatus status;  // 상태
-    
-    // 비즈니스 로직
-    public void conductAutoReview(int age, long annualIncome, double dsr);
-}
-```
-
-#### 🔹 CreditInfo (Value Object)
-```java
-@Embeddable
-public class CreditInfo {
-    private int grade;                      // 신용등급
-    private int score;                      // 신용점수
-    private CreditProvider provider;        // 평가기관
-    private boolean hasDelinquency;         // 연체 여부
-    private LocalDate recentDelinquencyDate;
-    
-    // 도메인 로직
-    public boolean hasRecentDelinquency() { ... }
-}
-```
-
 ---
 
 ### STEP 4. Use Case 연결 및 서비스 계층 설계
@@ -143,7 +111,7 @@ public class PreReviewServiceImpl implements PreReviewService {
 }
 ```
 
-**도메인 이벤트 흐름:**
+**예시 도메인 이벤트 흐름:**
 ```
 PreReview.conductAutoReview()
     ↓
