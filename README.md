@@ -18,7 +18,10 @@
 ### STEP 1. 도메인 분석 및 언어 정의
 
 **주요 산출물:**
-![용어사전](assignment/STEP1_UbiquitousLanguage.png) - 업무 중심의 공통 언어 정의
+
+![용어사전](assignment/STEP1_UbiquitousLanguage.png)
+- 업무 중심의 공통 언어 정의
+
 - [업무 흐름도 (BPMN)](assignment/STEP1_BPMN.md) - 전체 업무 프로세스 다이어그램
 
 ---
@@ -26,9 +29,12 @@
 ### STEP 2. 경계 설정 및 구조화
 
 **주요 산출물:**
-![Subdomain](assignment/STEP2_Subdomain.png)
-![Context Map 다이어그램](assignment/STEP2_ContextMap.png)
 
+![Subdomain](assignment/STEP2_Subdomain.png)
+- Subdomain 설계
+
+![Context Map 다이어그램](assignment/STEP2_ContextMap.png)
+- Context Map 설계
 ---
 
 ### STEP 3. 도메인 모델 코드 구현
